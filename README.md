@@ -19,6 +19,8 @@ git clone git@github.com:bweave/omakub-macos.git ~/src/omakub-macos
 ```
 If you want to put it somewhere else, be sure to update the `$OMAKUB_DIR` variable in the `omakub` script.
 
+**iTerm**: Since iTerm doesn't offer a good way to import color presets from the command line, you'll have to manually import them in the GUI yourself. The color presets are located in the `themes/iterm` directory of this repo.
+
 ### Usage
 
 Symlink the `omakub` script to somewhere in your $PATH:
