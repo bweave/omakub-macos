@@ -17,9 +17,7 @@ Clone this repo to your local machine:
 ```sh
 git clone git@github.com:bweave/omakub-macos.git ~/src/omakub-macos
 ```
-
 If you want to put it somewhere else, be sure to update the `$OMAKUB_DIR` variable in the `omakub` script.
-```
 
 ### Usage
 
@@ -27,7 +25,6 @@ Symlink the `omakub` script to somewhere in your $PATH:
 ```sh
 ln -s /path/to/omakub-macos /usr/local/bin/omakub # or some other directory in your $PATH
 ```
-
 Run it:
 ```sh
 omakub
