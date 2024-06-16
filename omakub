@@ -88,6 +88,7 @@ if command -v alacritty &>/dev/null; then
 fi
 
 # set neovim theme
+cp "$OMAKUB_PATH/themes/neovim/$THEME.lua" ~/.config/nvim/lua/plugins/theme.lua
 for servername in $(nvr --serverlist); do
 	nvr --servername "$servername" --remote-send ":colorscheme $THEME | set background=$NVIM_BACKGROUND<CR>"
 done
