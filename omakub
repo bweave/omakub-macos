@@ -56,17 +56,18 @@ elif [ "$THEME" == "rose-pine-dawn" ]; then
 fi
 
 # set iterm profile
-osascript -e "
-tell application \"iTerm\"
+if [[ $TERM_PROGRAM == "iTerm.app" ]] || [[ -n $ITERM_SESSION_ID ]]; then
+	osascript -e "
+  tell application \"iTerm\"
     tell every window
-        tell every tab
-            tell every session
-                set color preset to \"$ITERM_THEME\"
-            end tell
+      tell every tab
+        tell every session
+          set color preset to \"$ITERM_THEME\"
         end tell
+      end tell
     end tell
-end tell"
-# TODO: make it the default profile for new windows
+  end tell"
+fi
 
 # set dark mode
 if [ "$DARK_MODE" = "true" ]; then
