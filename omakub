@@ -4,7 +4,7 @@
 # A script to set a system-wide look and feel for macOS
 #######################################################
 
-OMAKUB_DIR="$HOME/src/omakub-macos"
+OMAKUB_PATH="$HOME/src/omakub-macos"
 
 # We're gonna need brew
 if ! command -v brew &>/dev/null; then
@@ -31,27 +31,27 @@ THEME=$(gum choose "${THEME_NAMES[@]}" --header "Choose your theme" --height 9 |
 if [ "$THEME" == "gruvbox" ]; then
 	DARK_MODE="true"
 	ITERM_THEME="gruvbox-dark"
-	WALLPAPER="$OMAKUB_DIR/backgrounds/fog_forest_2.jpg"
+	WALLPAPER="$OMAKUB_PATH/backgrounds/fog_forest_2.jpg"
 	NVIM_BACKGROUND="dark"
 elif [ "$THEME" == "onedark" ]; then
 	DARK_MODE="true"
 	ITERM_THEME="onedark"
-	WALLPAPER="$OMAKUB_DIR/backgrounds/80s-retro-tropical-sunset-by-freepik.jpg"
+	WALLPAPER="$OMAKUB_PATH/backgrounds/80s-retro-tropical-sunset-by-freepik.jpg"
 	NVIM_BACKGROUND="dark"
 elif [ "$THEME" == "everforest" ]; then
 	DARK_MODE="true"
 	ITERM_THEME="everforest_dark_low"
-	WALLPAPER="$OMAKUB_DIR/backgrounds/ferns-green.jpg"
+	WALLPAPER="$OMAKUB_PATH/backgrounds/ferns-green.jpg"
 	NVIM_BACKGROUND="dark"
 elif [ "$THEME" == "kanagawa" ]; then
 	DARK_MODE="true"
 	ITERM_THEME="kanagawa_dragon"
-	WALLPAPER="$OMAKUB_DIR/backgrounds/kanagawa.jpg"
+	WALLPAPER="$OMAKUB_PATH/backgrounds/kanagawa.jpg"
 	NVIM_BACKGROUND="dark"
 elif [ "$THEME" == "rose-pine-dawn" ]; then
 	DARK_MODE="false"
 	ITERM_THEME="rose-pine-dawn"
-	WALLPAPER="$OMAKUB_DIR/backgrounds/simple-pastel-by-triarts-from-freepik.jpg"
+	WALLPAPER="$OMAKUB_PATH/backgrounds/simple-pastel-by-triarts-from-freepik.jpg"
 	NVIM_BACKGROUND="light"
 fi
 
