@@ -33,26 +33,36 @@ if [ "$THEME" == "gruvbox" ]; then
 	ITERM_THEME="gruvbox-dark"
 	WALLPAPER="$OMAKUB_PATH/backgrounds/fog_forest_2.jpg"
 	NVIM_BACKGROUND="dark"
+	VSC_THEME="Gruvbox Dark Medium"
+	VSC_EXTENSION="jdinhlife.gruvbox"
 elif [ "$THEME" == "onedark" ]; then
 	DARK_MODE="true"
 	ITERM_THEME="onedark"
 	WALLPAPER="$OMAKUB_PATH/backgrounds/80s-retro-tropical-sunset-by-freepik.jpg"
 	NVIM_BACKGROUND="dark"
+	VSC_THEME="One Dark Pro"
+	VSC_EXTENSION="zhuangtongfa.one-dark-pro"
 elif [ "$THEME" == "everforest" ]; then
 	DARK_MODE="true"
 	ITERM_THEME="everforest_dark_low"
 	WALLPAPER="$OMAKUB_PATH/backgrounds/ferns-green.jpg"
 	NVIM_BACKGROUND="dark"
+	VSC_THEME="Everforest Dark"
+	VSC_EXTENSION="sainnhe.everforest"
 elif [ "$THEME" == "kanagawa" ]; then
 	DARK_MODE="true"
 	ITERM_THEME="kanagawa_dragon"
 	WALLPAPER="$OMAKUB_PATH/backgrounds/kanagawa.jpg"
 	NVIM_BACKGROUND="dark"
+	VSC_THEME="Kanagawa"
+	VSC_EXTENSION="qufiwefefwoyn.kanagawa"
 elif [ "$THEME" == "rose-pine-dawn" ]; then
 	DARK_MODE="false"
 	ITERM_THEME="rose-pine-dawn"
 	WALLPAPER="$OMAKUB_PATH/backgrounds/simple-pastel-by-triarts-from-freepik.jpg"
 	NVIM_BACKGROUND="light"
+	VSC_THEME="Rosé Pine Dawn"
+	VSC_EXTENSION="mvllow.rose-pine"
 fi
 
 # set iterm profile
@@ -92,6 +102,17 @@ cp "$OMAKUB_PATH/themes/neovim/$THEME.lua" ~/.config/nvim/lua/plugins/theme.lua
 for servername in $(nvr --serverlist); do
 	nvr --servername "$servername" --remote-send ":colorscheme $THEME | set background=$NVIM_BACKGROUND<CR>"
 done
+
+# set vscode theme
+if command -v code &>/dev/null; then
+	code --install-extension "$VSC_EXTENSION" >/dev/null
+	jq --arg vsc_theme "$VSC_THEME" '.["workbench.colorTheme"] = $vsc_theme' ~/Library/Application\ Support/Code/User/settings.json >tmp.json && mv tmp.json ~/Library/Application\ Support/Code/User/settings.json
+	if [ "$THEME" == "rose-pine-dawn" ]; then
+		jq --arg vsc_theme "$VSC_THEME" '.["workbench.preferredLightColorTheme"] = $vsc_theme' ~/Library/Application\ Support/Code/User/settings.json >tmp.json && mv tmp.json ~/Library/Application\ Support/Code/User/settings.json
+	else
+		jq --arg vsc_theme "$VSC_THEME" '.["workbench.preferredDarkColorTheme"] = $vsc_theme' ~/Library/Application\ Support/Code/User/settings.json >tmp.json && mv tmp.json ~/Library/Application\ Support/Code/User/settings.json
+	fi
+fi
 
 # set chrome theme
 if mdfind "kMDItemCFBundleIdentifier == 'com.google.Chrome'" >/dev/null; then
