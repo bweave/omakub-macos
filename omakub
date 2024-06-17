@@ -93,4 +93,18 @@ for servername in $(nvr --serverlist); do
 	nvr --servername "$servername" --remote-send ":colorscheme $THEME | set background=$NVIM_BACKGROUND<CR>"
 done
 
+# set chrome theme
+if mdfind "kMDItemCFBundleIdentifier == 'com.google.Chrome'" >/dev/null; then
+	if gum confirm "Do you want to update Chrome theme? If yes, Chrome will be restarted!"; then
+		pkill -a -i "Google Chrome"
+
+		while pgrep -i "Google Chrome" >/dev/null; do
+			sleep 0.1
+		done
+
+		source "$OMAKUB_PATH/themes/chrome/$THEME.sh"
+		open -a "Google Chrome"
+	fi
+fi
+
 exit 0
