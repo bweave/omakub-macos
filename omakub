@@ -22,10 +22,15 @@ for app in gum nvr; do
 	fi
 done
 
-# Pick a preconfigured theme
-THEME_NAMES=("Onedark" "Everforest" "Gruvbox" "Kanagawa" "Rose Pine Dawn")
-THEME=$(gum choose "${THEME_NAMES[@]}" --header "Choose your theme" --height 9 | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
-[ -z "$THEME" ] && echo "No theme selected" && exit 0
+if [ $# -eq 0 ]; then
+	# TODO: add kanagawa dragon
+	# Pick a preconfigured theme
+	THEME_NAMES=("Onedark" "Everforest" "Gruvbox" "Kanagawa" "Rose Pine Dawn")
+	THEME=$(gum choose "${THEME_NAMES[@]}" --header "Choose your theme" --height 9 | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+	[ -z "$THEME" ] && echo "No theme selected" && exit 0
+else
+	THEME=$1
+fi
 
 # Translate to specific vars
 if [ "$THEME" == "gruvbox" ]; then
